@@ -36,10 +36,12 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+      - name: sandbox-app-test-registry
       containers:
       - name: frontend
-        image: dummy-todo-frontend:latest
-        imagePullPolicy: Never  # Use local image built by minikube
+        image: registry.digitalocean.com/sandbox-app-test-registry/k8s:frontend-latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         volumeMounts:
